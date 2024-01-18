@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="utf-8" />
+		<style type="text/css">
+			html,body{
+				background-color:black;
+				width: 100%;
+				height: 100%;
+			}
+			#flex-container{
+				
+				display:flex;
+				width: 100%;
+				height: 100%;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			.titletext{
+				font-size: 80px;
+				color:white;
+				text-align: center;
+				height: 100px;
+				
+				
+			}
+
+			.text{
+				font-size: 30px;
+				color: white;
+				height: 60%;
+				flex-wrap: wrap;
+			}
+            .star {
+                position: absolute;
+                color: white;
+                font-size: 24px;
+            }
+			
+		</style>
+		<title></title>
+		<script src="js/jquery-3.7.1.js"></script>
+        <script>
+			$(document).ready(function () {
+			    var starCount = 100;
+			    var $starfield = $('#flex-container');
+			
+			    function createStar() {
+			        var $star = $('<div>').addClass('star').html('&#9733;'); // HTML entity for ★
+			        return $star;
+			    }
+			
+			    function placeStar($star) {
+			        var xPos = Math.floor(Math.random() * $starfield.width());
+			        var yPos = Math.floor(Math.random() * $starfield.height());
+			        $star.css({
+			            left: xPos + 'px',
+			            top: yPos + 'px',
+			            'font-size': Math.random() * 20 + 10 + 'px', // Randomize star size
+			            opacity: 0
+			        });
+			    }
+			
+			    function blinkStar($star) {
+			        $star.animate({opacity: Math.random()}, 500, 'swing', function () {
+			            setTimeout(function () {
+			                blinkStar($star);
+			            }, Math.random() * 2000);
+			        });
+			    }
+			
+			    function init() {
+			        for (var i = 0; i < starCount; i++) {
+			            var $star = createStar();
+			            placeStar($star);
+			            blinkStar($star);
+			            $starfield.append($star);
+			        }
+			    }
+			
+			    init();
+			});
+		</script>
+	</head>
+	<body>
+		<div class="titletext" id="to">
+			智能路灯
+		</div>
+		<div id="flex-container">
+			
+				<a   ><img src="https://mp.ofweek.com/Upload/News/Img/member35447/202009/15171547551711.png"></a>
+				
+			<div id="ti" class="text" >
+             智能路灯解决是一种集成各种信息设备技术创新复合应用的物联网智慧产品。
+			 它面向城市应用的实际需求、针对不同应用环境及客户需求，利用NB－IoT、2G／3G／4G、LORA和光纤等各种通讯方式，在路灯杆上综合运用信息化手段，建立接入规范，统一各硬件层接口，实现路灯照明智能控制、城市环境实时监测、无线WiFi基站、视频监控管理、信息播控系统以及各类传感设施的接入，为智慧城市其他项目的落地打好物联网基础，有效解决城市资源整合难题。
+			 使城市建设更科学、管理更高效、服务更便民，充分发挥路灯在智慧城市中的骨架作用。
+			 </div>
+			<br><br />
+		</div>
+		
+	</body>
+</html>
